@@ -1,0 +1,6 @@
+{
+  "name": "Sheetora - شيتورا",
+  "description": "منصة احترافية عربية لقوالب Excel الجاهزة، وتطوير الأنظمة الرقمية، وخدمات تحليل البيانات للأعمال.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

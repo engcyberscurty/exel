@@ -1,0 +1,904 @@
+You are a senior full-stack software engineer, UI/UX designer, database architect, cybersecurity engineer, and SaaS product developer.
+
+Build a complete production-oriented web platform named SHEETORA, a professional Arabic-first marketplace for ready-made Excel templates, premium downloadable digital products, custom spreadsheet development, data analytics services, website development services, and advertising placements.
+
+IMPORTANT: Do not deliver only a mockup or landing page. Build the actual functional application, database integration, authentication, admin dashboard, storage integration, and all essential pages. If external credentials are unavailable, provide working integration code with clear setup instructions and never fake successful payments or database operations.
+
+==================================================
+1. BRAND AND DESIGN
+==================================================
+
+Brand: Sheetora
+Tagline in Arabic: شغلك أذكى مع شيتورا
+Primary market: Egypt and the Arabic-speaking business market.
+Primary language: Arabic (RTL).
+Secondary language: English (LTR).
+Currency: EGP (Egyptian Pound).
+Design: Premium, modern, trustworthy, clean, business-focused, editorial, and professionally handcrafted. Avoid generic AI-generated design patterns.
+
+Visual identity:
+- Deep emerald green: #126B45
+- Dark forest green: #0B3527
+- Warm off-white: #F8FAF7
+- White: #FFFFFF
+- Neutral gray: #667085
+- Subtle borders: #E5E7EB
+- Use green sparingly for primary actions.
+- Use a modern Arabic font such as Cairo or IBM Plex Sans Arabic.
+- Use a consistent spacing system, restrained shadows, elegant typography, carefully designed empty states, and responsive layouts.
+- Avoid excessive gradients, neon colors, glassmorphism, unnecessary animations, giant rounded cards, fake metrics, fake reviews, and fabricated customer logos.
+- Use a real, consistent logo built as SVG or a suitable text-based brand mark.
+- Fully responsive on desktop, tablet, and mobile.
+- Accessibility: semantic HTML, keyboard navigation, readable contrast, and accessible form labels.
+
+==================================================
+2. REQUIRED TECHNOLOGY
+==================================================
+
+Frontend:
+- React with TypeScript.
+- Vite.
+- Tailwind CSS or a consistent component styling system.
+- React Router for routing.
+- A maintained Supabase JavaScript client.
+- Zod or equivalent schema validation.
+- Reusable components and a clean feature-based project structure.
+
+Backend:
+- Supabase Auth.
+- Supabase PostgreSQL database.
+- Supabase Storage for protected Excel files and public preview images.
+- PostgreSQL Row Level Security (RLS).
+- Secure Edge Functions for privileged operations, payment verification, download authorization, and administrative workflows where appropriate.
+
+Use environment variables:
+VITE_SUPABASE_URL=
+VITE_SUPABASE_PUBLISHABLE_KEY=
+
+Never expose the Supabase service-role key or payment-provider secret keys in frontend code, source control, browser storage, or public configuration.
+
+If a backend feature requires server-side credentials, implement it in a Supabase Edge Function and explain how to configure its secrets.
+
+==================================================
+3. PUBLIC WEBSITE PAGES
+==================================================
+
+Create these functional routes:
+
+/
+Home page.
+
+ /templates
+All Excel templates with filtering, search, sorting, and pagination.
+
+/templates/:slug
+Individual template details.
+
+/categories/:slug
+Category-specific template listing.
+
+/services
+All custom services.
+
+/services/data-analysis
+Data analytics and reporting services.
+
+/services/custom-excel
+Custom Excel spreadsheets and automation.
+
+/services/web-development
+Website design and development services.
+
+/request-service
+Submit a project inquiry.
+
+/pricing
+Pricing and service packages.
+
+/advertise
+Advertising opportunities and advertiser inquiry form.
+
+/about
+About Sheetora, without invented company claims.
+
+/contact
+Contact form.
+
+/faq
+Frequently asked questions.
+
+/auth/login
+Login.
+
+/auth/register
+Registration.
+
+/auth/forgot-password
+Password recovery.
+
+/account
+Customer account.
+
+/account/downloads
+Purchased products and authorized download history.
+
+/account/orders
+Orders and payment status.
+
+/account/requests
+Submitted custom-service requests.
+
+/cart
+Cart for paid products, if a cart is implemented.
+
+/checkout
+Secure checkout flow.
+
+/privacy
+Privacy policy template requiring owner review.
+
+/terms
+Terms and conditions template requiring owner review.
+
+Also include useful loading, empty, error, unauthorized, and not-found states.
+
+==================================================
+4. HOMEPAGE CONTENT AND STRUCTURE
+==================================================
+
+Build a professional Arabic RTL homepage with:
+
+A. Header:
+- Sheetora logo.
+- Navigation links: الرئيسية، ملفات Excel، الخدمات، للشركات، أعلن معنا.
+- Search button or search input.
+- Language switcher.
+- Login/register buttons.
+- User menu when authenticated.
+- Responsive mobile navigation.
+
+B. Hero:
+Arabic headline:
+"كل أدوات شغلك في مكان واحد"
+
+Supporting text:
+"حمّل قوالب Excel جاهزة، اطلب تقارير تحليل بيانات احترافية، أو نفّذ مشروعك التقني مع Sheetora."
+
+Primary CTA: استكشف ملفات Excel.
+Secondary CTA: اطلب خدمة مخصصة.
+
+C. Category section:
+- المحاسبة والمالية.
+- المبيعات والأرباح.
+- إدارة المخزون.
+- الموارد البشرية والرواتب.
+- إدارة المشاريع والمهام.
+- تحليل البيانات ولوحات المعلومات.
+- المصروفات والميزانيات.
+- إدارة العملاء CRM.
+
+D. Featured templates:
+Each template card displays:
+- Preview image.
+- Arabic title and short description.
+- Category.
+- Price in EGP.
+- Free or paid label.
+- File format, such as XLSX or XLSM when appropriate.
+- Compatibility information if verified.
+- Preview/details link.
+- Download or purchase CTA.
+
+E. Services section:
+Present three distinct service categories:
+1. Data analytics and interactive business reports.
+2. Custom Excel templates, formulas, dashboards, and automation.
+3. Professional website design and development.
+
+CTA: اطلب عرض سعر.
+
+F. Business section:
+Headline: "عندك شركة أو مشروع؟ خلّي بياناتك تشتغل لصالحك."
+Explain that companies can request data cleaning, data analysis, dashboards, Excel automation, reporting, and custom websites.
+CTA: أرسل تفاصيل مشروعك.
+
+G. How it works:
+Browse or describe your project, receive a quote or purchase a product, then access the deliverable securely.
+
+H. Featured categories, genuinely available templates, FAQ, contact CTA, and a professional footer.
+
+Do not display fabricated download counts, customer counts, testimonials, ratings, or business partnerships. Hide unavailable metrics until real data exists.
+
+==================================================
+5. EXCEL TEMPLATE MARKETPLACE
+==================================================
+
+Create a working template catalog.
+
+Each template supports:
+- Title in Arabic and optional English title.
+- Unique slug.
+- Short description.
+- Full description.
+- Category.
+- Tags.
+- Price in EGP.
+- Free/paid status.
+- Main preview image.
+- Optional gallery images.
+- File extension.
+- File size.
+- Version.
+- Compatibility notes.
+- Published/draft/archived status.
+- Featured status.
+- Creation and update timestamps.
+- Optional changelog.
+- Optional sample screenshots.
+- Download permissions.
+- Search engine metadata.
+
+Implement:
+- Full-text search.
+- Category and price filters.
+- Sorting by newest, price, and featured status.
+- Pagination.
+- Responsive cards.
+- A product details page.
+- A preview gallery.
+- Clear free vs paid pricing.
+- Related templates.
+- Purchase and download buttons.
+
+Free downloads:
+- Require a logged-in user.
+- Validate that the product is published and free.
+- Authorize the request on the server.
+- Generate a short-lived signed URL for a private Storage object.
+- Record the authorized download.
+- Apply reasonable rate limits.
+
+Paid downloads:
+- Require an authenticated user.
+- Verify a confirmed payment or valid entitlement server-side.
+- Only then issue a short-lived signed URL.
+- Record download history.
+- Prevent clients from granting themselves purchase access.
+- Do not expose the private storage path as a permanent public URL.
+
+Never place private downloadable files in a public bucket.
+
+==================================================
+6. CUSTOM PAID SERVICES FOR COMPANIES
+==================================================
+
+Create a complete service-request and quotation workflow.
+
+Service types:
+
+A. Data Analytics:
+- Excel, CSV, and other supported business data analysis.
+- Data cleaning and preparation.
+- KPI dashboards.
+- Sales and financial reports.
+- Business performance analysis.
+- Management reports.
+- Visualizations and actionable insights.
+
+B. Custom Excel:
+- Tailored spreadsheets.
+- Financial models.
+- Inventory management.
+- Sales tracking.
+- Employee and payroll sheets.
+- Automated formulas.
+- Pivot tables and charts.
+- Interactive dashboards.
+- VBA/macros when requested and technically appropriate.
+- Documentation and user instructions.
+
+C. Website Design and Development:
+- Business websites.
+- Landing pages.
+- Portfolio websites.
+- Company websites.
+- Database-connected websites.
+- Admin dashboards.
+- E-commerce projects as a separately scoped service.
+
+Create a detailed request form containing:
+- Customer name.
+- Company name, optional.
+- Email.
+- Phone number.
+- Service type.
+- Project title.
+- Project description.
+- Business objectives.
+- Expected deliverables.
+- Budget range in EGP.
+- Desired deadline.
+- Optional file attachments.
+- Consent to the privacy policy.
+
+After submission:
+- Save the request in Supabase.
+- Generate a unique request reference.
+- Show a real success message only after the database confirms success.
+- Notify the administrator through a properly configured email integration or Edge Function.
+- Allow the customer to view request status in their account.
+
+Admin statuses:
+new, reviewing, awaiting_customer, quoted, approved, in_progress, delivered, completed, cancelled.
+
+The admin can:
+- Review inquiries.
+- Ask for clarification.
+- Add an internal note.
+- Set a proposed price in EGP.
+- Set quotation expiry.
+- Add deliverables and scope.
+- Send a quote to the customer.
+- Record acceptance.
+- Link an accepted quote to a payment workflow.
+- Update progress.
+- Deliver files securely.
+
+Clearly distinguish an inquiry from a confirmed order. A submitted form must not automatically imply that the job is accepted or paid.
+
+Implement a customer-facing quotation view and an order record when a quote is accepted.
+
+==================================================
+7. ADVERTISING SYSTEM
+==================================================
+
+Build an advertising feature that can generate revenue without making the site look cluttered.
+
+Public pages:
+- /advertise explains available placements.
+- Advertising inquiry form.
+- Contact details and target audience questions.
+- Campaign objectives, desired dates, budget in EGP, destination URL, and optional creative assets.
+- Advertiser account is optional for initial inquiries.
+
+Admin advertising dashboard:
+- Create, edit, pause, approve, reject, and archive campaigns.
+- Manage placements:
+  1. Homepage banner.
+  2. Homepage featured sponsor.
+  3. Category-page sponsored placement.
+  4. Sidebar or designated internal-page placement.
+- Campaign title.
+- Advertiser name.
+- Creative image.
+- Destination URL.
+- Start and end dates.
+- Campaign status.
+- Pricing model.
+- Fixed campaign price in EGP or a configurable CPM/CPC model.
+- Daily or total budget where applicable.
+- Impression and click statistics.
+- Campaign reporting.
+- Approval and moderation workflow.
+
+Create an advertising inquiry database table. Keep inquiry, negotiated quotation, and live advertising campaign as distinct records or clearly distinct states.
+
+Security and integrity:
+- Validate destination URLs.
+- Sanitize user-controlled content.
+- Prevent arbitrary HTML and JavaScript injection.
+- Use a safe redirect or click-tracking endpoint.
+- Count impressions and clicks through server-controlled or rate-limited endpoints.
+- Avoid duplicate counting on every React render.
+- Use a privacy-conscious approach to analytics.
+- Do not promise real advertising revenue or guaranteed performance.
+
+For initial release, implement a managed direct-advertising system controlled by the site owner.
+
+Design the architecture so that a future Google AdSense integration is possible, but do not fabricate AdSense approval, publisher IDs, or advertising revenue. Only display the actual provider's ads after legitimate integration and approval.
+
+Clearly label sponsored content as "إعلان" or "محتوى برعاية".
+
+==================================================
+8. CUSTOMER AUTHENTICATION AND ACCOUNT
+==================================================
+
+Implement Supabase Auth:
+- Email/password registration.
+- Login/logout.
+- Email verification where configured.
+- Password recovery.
+- Session restoration.
+- Protected account routes.
+- Friendly validation messages in Arabic.
+- Basic abuse prevention and rate limiting where appropriate.
+
+User profile:
+- Full name.
+- Email.
+- Optional phone.
+- Optional company.
+- Preferred language.
+- Created timestamp.
+
+Roles:
+- customer.
+- contributor.
+- admin.
+
+Role assignment must never be controlled by a public signup form or a client-side role field.
+
+Use a protected profiles/role architecture with appropriate RLS and a secure administrative process. Consider a separate role table with restricted writes.
+
+Contributors are a future feature. Prepare the database for contributor ownership, review, publication approval, and payout records, but do not implement automated payouts unless a proper verified payment and legal workflow is configured.
+
+==================================================
+9. ADMIN DASHBOARD
+==================================================
+
+Create a fully functional protected route /admin.
+
+Sections:
+- Overview.
+- Templates.
+- Categories.
+- File uploads.
+- Customers.
+- Service requests.
+- Quotations.
+- Orders and payments.
+- Advertising campaigns.
+- Advertising inquiries.
+- Contributors.
+- Site settings.
+- Basic audit log.
+
+Admin features:
+- Add, edit, publish, unpublish, archive, and delete templates.
+- Upload Excel files to private Supabase Storage.
+- Upload preview images.
+- Assign categories and tags.
+- Set free or paid status.
+- Set EGP prices.
+- Preview product pages.
+- Review service requests and quotes.
+- Update order status based on verified events.
+- Create and manage ads.
+- Manage homepage featured items.
+- Manage site settings and contact details.
+- Filter and search administrative lists.
+- Display meaningful empty, loading, success, and error states.
+- Require confirmation before destructive actions.
+
+Admin access must be verified on the server or through trusted database authorization. Hiding the admin navigation link is not a security mechanism.
+
+Never let users modify their own role or payment state through direct database requests.
+
+==================================================
+10. SUPABASE DATABASE SCHEMA
+==================================================
+
+Create versioned SQL migrations for the following tables, with suitable types, indexes, foreign keys, timestamps, constraints, and RLS.
+
+1. profiles
+- id UUID primary key referencing auth.users.
+- full_name.
+- email where needed.
+- phone nullable.
+- company_name nullable.
+- preferred_language.
+- created_at.
+- updated_at.
+
+2. user_roles
+- user_id UUID referencing auth.users.
+- role enum or validated text.
+- created_at.
+- Primary key appropriate for user and role.
+- Restricted role assignment.
+
+3. categories
+- id UUID.
+- name_ar.
+- name_en nullable.
+- slug unique.
+- description nullable.
+- sort_order.
+- is_active.
+- created_at.
+
+4. templates
+- id UUID.
+- title_ar.
+- title_en nullable.
+- slug unique.
+- short_description.
+- description.
+- category_id referencing categories.
+- price_egp NUMERIC with nonnegative CHECK constraint.
+- is_free BOOLEAN.
+- storage_path private.
+- preview_image_path or validated public preview URL.
+- file_extension.
+- file_size_bytes.
+- version.
+- status enum: draft, published, archived.
+- is_featured.
+- created_by referencing auth.users.
+- updated_by nullable.
+- published_at nullable.
+- created_at.
+- updated_at.
+
+Ensure free/paid price consistency through database constraints or validated transactional server logic.
+
+5. template_tags
+- id.
+- template_id.
+- tag.
+- Unique constraint for template and tag.
+
+6. template_images
+- id.
+- template_id.
+- storage_path.
+- alt_text_ar.
+- sort_order.
+
+7. orders
+- id UUID.
+- user_id.
+- order_number unique.
+- total_egp.
+- currency default EGP.
+- status: pending, paid, failed, cancelled, refunded, partially_refunded if supported.
+- payment_provider.
+- created_at.
+- paid_at nullable.
+
+8. order_items
+- id UUID.
+- order_id.
+- template_id.
+- title_snapshot.
+- unit_price_egp.
+- quantity.
+- subtotal_egp.
+- Unique constraints and valid amount checks.
+
+9. payments
+- id UUID.
+- order_id.
+- provider.
+- provider_reference.
+- amount_egp.
+- currency.
+- status.
+- verified_at.
+- created_at.
+- Unique provider reference when available.
+
+10. download_logs
+- id UUID.
+- user_id.
+- template_id.
+- order_id nullable.
+- downloaded_at.
+- Keep personal data minimal and restrict reads.
+
+11. service_requests
+- id UUID.
+- request_number unique.
+- user_id nullable only if guest requests are explicitly enabled.
+- service_type.
+- project_title.
+- company_name nullable.
+- description.
+- deliverables nullable.
+- budget_min_egp nullable.
+- budget_max_egp nullable.
+- deadline nullable.
+- status.
+- created_at.
+- updated_at.
+
+12. service_attachments
+- id UUID.
+- request_id.
+- storage_path in a private bucket.
+- original_filename.
+- content_type.
+- size_bytes.
+- created_at.
+
+13. quotations
+- id UUID.
+- request_id.
+- quote_number unique.
+- amount_egp.
+- scope.
+- status.
+- expires_at nullable.
+- accepted_at nullable.
+- created_at.
+- updated_at.
+
+14. service_orders
+- id UUID.
+- request_id.
+- quotation_id.
+- user_id.
+- amount_egp.
+- payment_status.
+- work_status.
+- created_at.
+- updated_at.
+
+15. advertising_inquiries
+- id UUID.
+- name.
+- company.
+- email.
+- phone nullable.
+- budget_egp nullable.
+- campaign_objective.
+- preferred_placements.
+- desired_start_date nullable.
+- desired_end_date nullable.
+- status.
+- created_at.
+
+16. ad_campaigns
+- id UUID.
+- advertiser_name.
+- title.
+- placement.
+- creative_storage_path.
+- destination_url.
+- pricing_model.
+- price_egp nullable.
+- budget_egp nullable.
+- start_at.
+- end_at.
+- status.
+- created_at.
+- updated_at.
+
+17. ad_events
+- id UUID.
+- campaign_id.
+- event_type: impression or click.
+- occurred_at.
+- Avoid storing unnecessary identifiable visitor data.
+- Prevent unrestricted client-side metric manipulation.
+
+18. contributor_profiles
+- id UUID.
+- user_id.
+- display_name.
+- bio nullable.
+- status.
+- created_at.
+
+19. contributor_submissions
+- id UUID.
+- contributor_id.
+- template_id nullable.
+- submission_status.
+- reviewer_notes nullable.
+- created_at.
+- updated_at.
+
+20. contributor_payouts
+- id UUID.
+- contributor_id.
+- amount_egp.
+- status.
+- reference nullable.
+- created_at.
+- This is a recordkeeping table, not an automatic money-transfer mechanism.
+
+21. audit_logs
+- id UUID.
+- actor_user_id nullable.
+- action.
+- entity_type.
+- entity_id nullable.
+- safe metadata JSONB.
+- created_at.
+
+Add appropriate indexes for published templates, slugs, category filters, request status, order ownership, download lookups, and ad campaign date/status filters.
+
+Implement profile creation through a secure trigger or a trusted server flow. Avoid recursive RLS policies.
+
+Use transactions or secure database functions for operations that must remain consistent.
+
+Do not assume every table should be writable by every authenticated user.
+
+==================================================
+11. ROW LEVEL SECURITY AND STORAGE SECURITY
+==================================================
+
+Enable RLS on all exposed tables.
+
+Provide complete SQL migrations with explicit policies.
+
+Required policy principles:
+
+- Anyone may read active categories and published template metadata.
+- Anonymous users cannot download files.
+- Authenticated users may read their own profile and update only approved profile fields.
+- Users cannot modify their own roles.
+- Users may read their own orders, order items, payment summaries, service requests, quotes, and download history as appropriate.
+- Customers cannot mark orders paid.
+- Customers cannot modify verified payment records.
+- Customers cannot publish templates.
+- Only trusted admins can manage published content, pricing, campaigns, and roles.
+- Contributors can access only their own authorized submissions and approved records.
+- Service request attachments must be private and owner/admin-authorized.
+- Ad inquiries must not be publicly readable.
+- Ad event writes must be protected against arbitrary campaign manipulation.
+- Public users cannot access unpublished templates or private storage objects.
+- Avoid trusting user-submitted role claims or metadata that users can change.
+- Use secure server-side functions for admin-only actions and sensitive business logic.
+
+Storage buckets:
+- sheetora-files: PRIVATE.
+- sheetora-previews: PUBLIC only for non-sensitive preview assets.
+- sheetora-service-attachments: PRIVATE.
+- sheetora-ad-creatives: choose a safe access strategy based on the public creative requirements.
+
+Use opaque object paths and file size/type validation.
+
+Provide SQL policies for Storage objects, not just database tables.
+
+For protected downloads, validate ownership and entitlement before creating a signed URL. Use short expiration times.
+
+If an administrative function uses service-role privileges, authenticate the caller and verify their admin role before performing the action.
+
+==================================================
+12. PAYMENT INTEGRATION
+==================================================
+
+Design a payment abstraction suitable for EGP and Egyptian customers.
+
+Do not assume that a payment provider is configured or that a payment has succeeded.
+
+Implement:
+- Server-created checkout sessions or payment intents.
+- Server-side amount calculation from trusted database prices.
+- Idempotent payment confirmation.
+- Verified webhooks with provider signature validation.
+- Safe handling of duplicate webhook events.
+- Order status transitions.
+- Successful purchase entitlements.
+- Refund handling when supported.
+- Clear pending/failed states.
+- A payment-provider adapter with documented setup.
+
+Keep the payment provider configurable. Offer an integration interface for a provider available to the merchant in Egypt, such as Paymob or another supported provider, but verify its current merchant requirements during actual integration.
+
+Never store raw card details.
+
+If credentials are missing, clearly mark checkout as not configured and do not simulate successful transactions.
+
+==================================================
+13. EMAIL AND NOTIFICATIONS
+==================================================
+
+Prepare transactional notifications for:
+- Registration verification.
+- Password recovery.
+- Purchase confirmation after verified payment.
+- Service request receipt.
+- Quote ready for review.
+- Quote acceptance.
+- Project status changes.
+- Admin notification for new service requests.
+- Advertising inquiry received.
+
+Use a configured email service via Edge Functions or another secure backend. If no provider credentials exist, provide a documented integration and a useful in-app status instead of pretending an email was sent.
+
+==================================================
+14. SEO, PERFORMANCE, AND QUALITY
+==================================================
+
+Implement:
+- Unique page titles and meta descriptions.
+- Arabic-friendly URLs where appropriate, preferably stable English slugs.
+- Sitemap and robots.txt.
+- Canonical URLs where appropriate.
+- Open Graph metadata.
+- Product structured data only when accurate.
+- Responsive image optimization.
+- Lazy loading for image galleries.
+- Pagination for large catalogs.
+- Error boundaries.
+- Centralized error handling.
+- Form validation.
+- Loading skeletons.
+- Accessible dialogs and navigation.
+- Secure handling of user content.
+- A consistent toast/notification system.
+- No dead buttons or fake interactions.
+- No fabricated inventory or completed transactions.
+
+Include useful automated tests for authentication, authorization, pricing consistency, purchase entitlement, and private download access.
+
+==================================================
+15. PROJECT STRUCTURE AND DELIVERABLES
+==================================================
+
+Generate the complete application source, including:
+
+- package.json.
+- Vite and TypeScript configuration.
+- Tailwind configuration if used.
+- All React pages and reusable components.
+- Supabase client setup.
+- Auth and protected-route logic.
+- Admin dashboard.
+- Marketplace.
+- Service request and quotation workflows.
+- Advertising inquiry and campaign-management screens.
+- Database SQL migrations.
+- RLS and Storage policies.
+- Edge Functions for sensitive workflows.
+- Payment provider adapter.
+- Email adapter.
+- .env.example without real secrets.
+- README.md with detailed setup instructions.
+- Tests for critical security paths.
+
+Do not place the entire application in one giant source file.
+
+Do not output pseudocode instead of essential implementation.
+
+Do not claim the project is deployed or operational until it has actually been configured and tested.
+
+==================================================
+16. BUILD ORDER
+==================================================
+
+Implement in these stages:
+
+Stage 1:
+- Complete project scaffold.
+- Brand system and responsive public website.
+- Authentication.
+- Supabase schema and migrations.
+- RLS and private Storage setup.
+- Template catalog and admin CRUD.
+- Secure free downloads after login.
+
+Stage 2:
+- Paid products.
+- Orders and payment integration.
+- Verified download entitlements.
+
+Stage 3:
+- Data analytics, custom Excel, and website-development requests.
+- Quotation and service-order workflows.
+
+Stage 4:
+- Direct advertising inquiry and campaign management.
+- Admin-managed advertising placements and safe event tracking.
+
+Stage 5:
+- Contributor submissions and moderation.
+- SEO, automated tests, security review, and deployment documentation.
+
+Start by inspecting the available project workspace. Then create the actual files and implement Stage 1 completely. Do not stop after describing the architecture. If the environment cannot create files directly, provide the complete contents of each required file in clearly labeled sections.
+
+After implementation, provide:
+1. The files created.
+2. Exact Supabase setup steps.
+3. SQL migration execution instructions.
+4. How to configure the first admin securely.
+5. Environment-variable setup.
+6. How to run the app locally.
+7. How to test login, free downloads, and admin permissions.
+8. Which payment and email integrations still require credentials.
+9. Known limitations and next implementation steps.
+
+Use Arabic for the user-facing interface and setup explanations. Keep source code, identifiers, and technical documentation in professional English where appropriate.
